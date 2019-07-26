@@ -1,9 +1,5 @@
-import confiparser
+from .config_loader import CloudConn
 
-class CloudConn(object):
-    
-    def __init__(self):
-        pass
-    @staticmethod
-    def setup(self):
-        pass
+__version__ = '0.0.1'
+
+

@@ -12,13 +12,15 @@ with io.open("pycloud/__init__.py", "rt", encoding="utf8") as f:
 
 
 CLASSIFIERS = [
-    "Development Status :: 1 - Alpha",
+    "Development Status :: 1 - Planning",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Environment :: Plugins"
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
+    "Framework :: Flask",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
@@ -42,6 +44,6 @@ setup(
     long_description=readme,
     platforms=["any"],
     classifiers=CLASSIFIERS,
-    install_requires=["pymongo>=3.4", "six"],
+    #install_requires=["", ""],
     test_suite="nose.collector"
 )
