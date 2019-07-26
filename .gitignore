@@ -30,7 +30,7 @@ _mailinglist
 .tox/
 .cache/
 .idea/
-docs/_build/
+_build/
 
 
 # intellij idea project directory
