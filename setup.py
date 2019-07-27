@@ -1,14 +1,13 @@
 import io
-import re
-
+import re 
 from setuptools import find_packages
 from setuptools import setup
 
-with io.open("README.rst", "rt", encoding="utf8") as f:
+with io.open("README.md", "rt", encoding="utf8") as f:
     readme = f.read()
 
 with io.open("pycloud/__init__.py", "rt", encoding="utf8") as f:
-    version = re.search(r'__version__ = "(.*?)"', f.read()).group(1)
+    version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
 
 CLASSIFIERS = [
@@ -23,12 +22,6 @@ CLASSIFIERS = [
     "Framework :: Flask",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-
-extra_opts = {
-    "packages": find_packages(exclude=["tests", "tests.*"]),
-    "tests_require": ["nose", "coverage==4.2", "blinker", "Pillow>=2.0.0"],
-}
-
 setup(
     name="pycloud",
     version=version,
@@ -44,6 +37,21 @@ setup(
     long_description=readme,
     platforms=["any"],
     classifiers=CLASSIFIERS,
-    #install_requires=["", ""],
-    test_suite="nose.collector"
+    packages=find_packages(exclude=["tests", "tests.*"]),
+    tests_require=["coverage==4.2", "hvac==0.9.5", "python-consul==1.1.0", "pyyaml==5.1.1"],
+    extras_require={
+        "dev": [
+            "coverage",
+            "sphinx",
+            "pallets-sphinx-themes",
+            "sphinxcontrib-log-cabinet",
+            "sphinx-issues",
+        ],
+        "docs": [
+            "sphinx",
+            "pallets-sphinx-themes",
+            "sphinxcontrib-log-cabinet",
+            "sphinx-issues",
+        ],
+    }
 )

@@ -1,0 +1,68 @@
+---
+version: 1
+disable_existing_loggers: False
+formatters:
+    simple:
+        format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+ 
+handlers:
+    debug_console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        stream: ext://sys.stdout
+
+    production_console:
+        class: logging.StreamHandler
+        level: INFO
+        formatter: simple
+        stream: ext://sys.stdout
+
+    
+    debug_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: simple
+        filename: ../logs/debug.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+ 
+    info_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: INFO
+        formatter: simple
+        filename: ../logs/info.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+ 
+    error_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: ERROR
+        formatter: simple
+        filename: ../logs/errors.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+
+    critical_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: CRITICAL
+        formatter: simple
+        filename: ../logs/critical.log
+        maxBytes: 10485760 # 10MB
+        backupCount: 20
+        encoding: utf8
+ 
+loggers:
+    development:
+        level: DEBUG
+        handlers: [debug_console, debug_file_handler, info_file_handler, error_file_handler, critical_file_handler]
+        propagate: True
+
+    production:
+        level: INFO
+        handlers: [production_console, info_file_handler, error_file_handler, critical_file_handler]
+        propagate: True
+...

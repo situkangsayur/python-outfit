@@ -13,21 +13,21 @@ consul:
 healthcheck:
     database:
         - mongo:
-            - lib: -
-            - host: - 
-            - port: -
-            - username: -
-            - password: -
+            - lib:  
+            - host:   
+            - port:  
+            - username: 
+            - password: 
         - mysql:
-            - lib: -
-            - host: -
-            - port: -
-            - username: -
-            - password: -
+            - lib:  
+            - host:  
+            - port:  
+            - username:  
+            - password:  
         - elasticsearch:
-            - host: -
-            - port: -
-
-
-
+            - host:  
+            - port:  
+logconfig:
+    - sourcetype: file
+    - source_location: assets/logging.yaml
 

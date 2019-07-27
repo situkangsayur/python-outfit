@@ -1,0 +1,13 @@
+vault:
+    host: ${host_vault}
+    port: ${port_vault}
+    scheme: ${scheme_vault}
+    token: ${token_vault}
+    path: ${path_vault}
+consul:
+    host: ${host_consul} 
+    port: ${port_consul}
+    scheme: ${scheme_consul}
+    token: ${token_consul}
+    path: ${path_consul}
+
