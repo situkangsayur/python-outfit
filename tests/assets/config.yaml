@@ -1,0 +1,33 @@
+vault:
+    host: localhost
+    port: 9500
+    scheme: http
+    token: token123jhk123
+    path: /sample/app
+consul:
+    host: localhost
+    port: 9500
+    scheme: http
+    token: token123jhk123
+    path: /sample/app
+healthcheck:
+    database:
+        - mongo:
+            - lib: -
+            - host: - 
+            - port: -
+            - username: -
+            - password: -
+        - mysql:
+            - lib: -
+            - host: -
+            - port: -
+            - username: -
+            - password: -
+        - elasticsearch:
+            - host: -
+            - port: -
+
+
+
+

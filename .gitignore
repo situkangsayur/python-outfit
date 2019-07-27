@@ -4,12 +4,6 @@
 pom.xml
 *.pyo
 
-# temp editing files
-*.swap
-*.swp
-*.swo
-*.*_cahce
-
 # env dir
 venv
 venv*
@@ -36,8 +30,11 @@ _build/
 # intellij idea project directory
 .idea
 
-# test/assets
-tests/assets
+# temp editing files
+*.swap
+*.swp
+*.swo
+*.*_cahce
 
 __pycache__
 *pycache*
