@@ -4,6 +4,7 @@ vault:
     scheme: http
     token: token123jhk123
     path: sample/app
+    datakey: datakey.json
 consul:
     host: localhost
     port: 9500
@@ -29,5 +30,5 @@ healthcheck:
             - port:  
 logconfig:
     - sourcetype: file
-    - source_location: assets/logging.yaml
+    - source_location: ./assets/logging.yaml
 
