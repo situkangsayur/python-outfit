@@ -38,7 +38,10 @@ setup(
     platforms=["any"],
     classifiers=CLASSIFIERS,
     packages=find_packages(exclude=["tests", "tests.*"]),
-    tests_require=["coverage==4.2", "hvac==0.9.5", "python-consul==1.1.0", "pyyaml==5.1.1"],
+    tests_require=["coverage==4.2", 
+                   "hvac==0.9.5", 
+                   "python-consul==1.1.0", 
+                   "pyyaml==5.1.1"],
     extras_require={
         "dev": [
             "coverage",

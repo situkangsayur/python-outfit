@@ -8,8 +8,8 @@ import json
 class VaultCon(ConnBase):
     """Class to construct the dict properties for the app from Consul and Vault
     """
-
-    exception_key = ['path_consul']
+    
+    exception_key = ['host_vault','scheme_vault', 'port_vault', 'path_vault']
     exception_dict = {}
 
     def __init__(self):
@@ -18,7 +18,7 @@ class VaultCon(ConnBase):
         vault_params = {}
         
         # construct the consul and vault params
-        vault_params = self.get_configs_dict(config.vault)
+        vault_params = self.get_configs_dict(config.vault, exception_key)
 
         # construct the vault url
         vault_params['url'] = self.exception_dict['scheme_vault'] +'://' + self.exception_dict['host_vault'] + ':' + str(self.exception_dict['port_vault'])
