@@ -1,0 +1,35 @@
+vault:
+    host: localhost
+    port: 9500
+    scheme: http
+    token: token123jhk123
+    path: sample/app
+    datakey: datakey.json
+consul:
+    host: localhost
+    port: 9500
+    scheme: http
+    token: token123jhk123
+    path: sample/app
+healthcheck:
+    database:
+        - mongo:
+            - lib:  
+            - host:   
+            - port:  
+            - username: 
+            - password: 
+        - mysql:
+            - lib:  
+            - host:  
+            - port:  
+            - username:  
+            - password:  
+        - elasticsearch:
+            - host:  
+            - port:  
+logconfig:
+    mode: development
+    source_type: dictionary 
+    source_location: tests.assets.logging
+
