@@ -16,7 +16,7 @@ def load_yaml(path):
     # get the yaml file
     with open(full_path, 'r') as stream:
         try:
-            content = yaml.load(stream)
+            content = yaml.safe_load(stream)
         except yaml.YAMLError as err:
             Logger.error('error load yaml file ' + str(err))
 

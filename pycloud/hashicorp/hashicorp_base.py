@@ -22,9 +22,7 @@ class ConnBase(ABC):
                 exception_key -- The list of special condition field in source
             
             """
-
             params = {}
-
             # iterate source items
             for k,v in source.items():
                 value = str(v) if type(v) == int else v

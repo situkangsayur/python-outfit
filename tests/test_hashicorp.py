@@ -9,6 +9,7 @@ from pycloud.hashicorp.consul_config import ConsulCon
 from pycloud.hashicorp.vault_config import VaultCon
 from pycloud.hashicorp.hashicorp_base import ConnBase
 from pycloud import CloudConn
+from pycloud.utils.logger import Logger
 
 
 class TestHashicorp(unittest.TestCase):
@@ -20,9 +21,9 @@ class TestHashicorp(unittest.TestCase):
         # get the yaml file
         with open(os.path.join(curr_dir,file_path), 'r') as stream:
             try:
-                self.normal_content = yaml.load(stream)
+                self.normal_content = yaml.safe_load(stream)
             except yaml.YAMLError as err:
-                print('error load yaml file ' + str(err))
+                Logger.error('error load yaml file ' + str(err))
 
         self.vault_data_key = {
             'db' : {
@@ -43,12 +44,10 @@ class TestHashicorp(unittest.TestCase):
         CloudConn.setup(path = 'tests/assets/config.yaml')
 
     def test_consul_init(self):
-        #CloudConn.setup(path = 'tests/assets/config.yaml')
         con = ConsulCon()
         self.assertNotEqual(con.cons, None, 'the con is None')
     
     def test_get_config_dict(self):
-        #CloudConn.setup(path = 'tests/assets/config.yaml')
         con = ConnBase()
         result = con.get_configs_dict(self.normal_content['consul'], list('path'))
         self.assertEqual(result['host'], 'localhost', 'the value of sample consul config is not equal')

@@ -30,6 +30,5 @@ healthcheck:
             - port:  
 logconfig:
     mode: development
-    source_type: yaml_file
-    source_location: ./tests/assets/logging.yaml
-
+    source_type: json_file
+    source_location: ./tests/assets/logging.json 

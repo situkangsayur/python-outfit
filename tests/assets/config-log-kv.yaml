@@ -30,6 +30,6 @@ healthcheck:
             - port:  
 logconfig:
     mode: development
-    source_type: yaml_file
-    source_location: ./tests/assets/logging.yaml
+    source_type: consulkv  
+    source_location: assets/logging.yaml
 
