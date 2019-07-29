@@ -1,6 +1,5 @@
-#import conf.bootstrap as config
-#import conf.datakey as datakey
 from .hashicorp_base import ConnBase
+from ..utils.logger import Logger
 import hvac
 import os
 import json
@@ -13,11 +12,12 @@ class VaultCon(ConnBase):
     exception_dict = {}
     datakey = {}
 
-    def __init__(self, config):
+    def __init__(self):
         """Constructor inisiating all properties
         """
+        ConnBase.__init__(self)
         # construct the consul and vault params
-        vault_params = self.get_configs_dict(config['vault'], self.exception_key)
+        vault_params = self.get_configs_dict(self._content['vault'], self.exception_key)
 
         # construct the vault url
         vault_params['url'] = self.exception_dict['scheme'] +'://' + self.exception_dict['host'] + ':' + str(self.exception_dict['port'])
@@ -31,7 +31,7 @@ class VaultCon(ConnBase):
         self.secrets = self.vault.kv.read_secret(self.exception_dict['path'])['data']
    
 
-    def _construct_data_vault(self, data, key = ''):
+    def _construct_data_vault(self, data, key = '', info = {}):
         """construct secret configuration informations of the services from vault return config dict
 
         Keyword arguments:
@@ -39,11 +39,10 @@ class VaultCon(ConnBase):
         key -- the string of the path that will be concated with sub key in data dict (default '')
         info -- the informations of the structures of the app configurations that will be merged with secret info (default {})
         """
-
         for k, v in data.items():
             if type(v) == dict:
                 # recursive if the value of the item is dict
-                info[k] = self.__construct_data_vault(v,key + '.' +k if key != '' else k, info[k] if k in info else {})
+                info[k] = self._construct_data_vault(v,(key + '.' +k) if key != '' else k, info[k] if k in info else {})
             else:
                 # assign info dict with secret info with index k
                 info[k] = self.secrets[key + '.' + k]

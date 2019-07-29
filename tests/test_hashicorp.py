@@ -2,15 +2,13 @@ import unittest
 import yaml
 import os
 import consul
-from hvac.v1 import Client
-from hvac.api.secrets_engines.kv import Kv
-from hvac.adapters import Adapter
 from hvac.api.secrets_engines import kv_v1 
 from unittest import mock
 from unittest.mock import MagicMock, patch
 from pycloud.hashicorp.consul_config import ConsulCon
 from pycloud.hashicorp.vault_config import VaultCon
 from pycloud.hashicorp.hashicorp_base import ConnBase
+from pycloud import CloudConn
 
 
 class TestHashicorp(unittest.TestCase):
@@ -19,7 +17,6 @@ class TestHashicorp(unittest.TestCase):
        
         curr_dir = os.path.dirname(__file__)
         file_path = 'assets/config.yaml'
-        self.normal_content = None
         # get the yaml file
         with open(os.path.join(curr_dir,file_path), 'r') as stream:
             try:
@@ -27,9 +24,10 @@ class TestHashicorp(unittest.TestCase):
             except yaml.YAMLError as err:
                 print('error load yaml file ' + str(err))
 
-        self.vault_cons_params = self.normal_content['vault']
         self.vault_data_key = {
-            'password' : 'secrets123'
+            'db' : {
+                'password' : '-'
+            }
         }
         self.kv_sample = {
             'db' : {
@@ -42,37 +40,41 @@ class TestHashicorp(unittest.TestCase):
                 'port' : 9200
             }
         }
+        CloudConn.setup(path = 'tests/assets/config.yaml')
 
     def test_consul_init(self):
-        con = ConsulCon(self.normal_content)
+        #CloudConn.setup(path = 'tests/assets/config.yaml')
+        con = ConsulCon()
         self.assertNotEqual(con.cons, None, 'the con is None')
     
     def test_get_config_dict(self):
+        #CloudConn.setup(path = 'tests/assets/config.yaml')
         con = ConnBase()
         result = con.get_configs_dict(self.normal_content['consul'], list('path'))
         self.assertEqual(result['host'], 'localhost', 'the value of sample consul config is not equal')
 
     def test_consul_get_kv(self):
-        con = ConsulCon(self.normal_content)
+        con = ConsulCon()
         con.get_kv = MagicMock(return_value = self.kv_sample)
         result = con.get_kv()
         self.assertEqual(result['db']['host'], 'localhost', 'the db host value is not equal')
     
-    #@patch.object(Kv,'kv')
     @patch.object(kv_v1.KvV1,'read_secret' )
     @patch.object(VaultCon, '_construct_data_vault')
     def test_vault_init(self,mock_kv, mock_vault_con):
-        #with patch.object(VaultCon, '_construct_data_vault', return_value= self.kv_sample) as mock_VauleCon:
         mock_vault_con.return_value = {'data' : {'password' : 'secrets123'}}
         mock_kv.return_value = {'password' : 'secrets123'}
-        con = VaultCon(self.normal_content)
+        con = VaultCon()
         result = con.get_secret_kv()
         self.assertEqual(result['password'], 'secrets123', 'the vault client is None')
-
-    def test_vault_get_kv(self):
-        pass
-
-        
+    
+    @patch.object(kv_v1.KvV1,'read_secret' )
+    def test_construct_data_vault(self, mock_kv):
+        mock_kv.return_value = {'data' : { 'db.password' : 'secrets123'}}
+        con = VaultCon()
+        con.datakey = self.vault_data_key
+        result = con.get_secret_kv()
+        self.assertEqual(result['db']['password'], 'secrets123', 'the vault client is None')
 
 if __name__=='__main__':
     unittest.main()

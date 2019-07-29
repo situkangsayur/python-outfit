@@ -1,9 +1,18 @@
 from abc import ABC
+import yaml
+import os
+from ..utils.logger import Logger
+from ..config_loader import CloudConn
 
 class ConnBase(ABC):
     exception_dict = {}
 
-    def get_configs_dict(self,source, exception_key):
+    def __init__(self):
+        '''Connection Base constructor init the file config
+        '''
+        self._content = CloudConn.content
+
+    def get_configs_dict(self, source = None, exception_key = None):
             """Constructing consul/vault properties from bootstrap.py return list of configs
 
             it will checking if the property is in exception_key list

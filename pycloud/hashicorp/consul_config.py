@@ -4,6 +4,7 @@ from .hashicorp_base import ConnBase
 import consul
 import os
 import json
+from ..utils.logger import Logger
 
 class ConsulCon(ConnBase):
     """Class to construct the dict properties for the app from Consul and Vault
@@ -13,11 +14,12 @@ class ConsulCon(ConnBase):
     exception_dict = {}
     cons = None
 
-    def __init__(self, config):
+    def __init__(self):
         """Constructor inisiating all properties
         """
+        ConnBase.__init__(self)
         # construct the consul and vault params
-        consul_params = self.get_configs_dict(config['consul'], self.exception_key)
+        consul_params = self.get_configs_dict(self._content['consul'], self.exception_key)
 
         # construct the consul
         self.cons = consul.Consul(**consul_params)
