@@ -26,7 +26,6 @@ _mailinglist
 .idea/
 _build/
 
-
 # intellij idea project directory
 .idea
 
@@ -61,4 +60,3 @@ htmlcov/
 *.log
 tags
 .tar.gz
-
