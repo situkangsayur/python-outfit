@@ -11,7 +11,7 @@ class MongoLib(Enum):
 
 class Healthchecker(object):
 
-    def __init__(self, healthcheck, service_list, app):
+    def __init__(self, healthcheck, service_list):
         self.healthcheck = healthcheck
 
         service_enum = {

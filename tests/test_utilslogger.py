@@ -10,7 +10,6 @@ class TestLogger(unittest.TestCase):
     def delete_all_log_files(self):
         filelist = glob.glob(os.path.join('tests/logs', '*'))
         for f in filelist:
-            print(f)
             os.remove(f) 
 
     def test_setup_log_json(self):
