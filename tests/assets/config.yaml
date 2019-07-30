@@ -11,23 +11,6 @@ consul:
     scheme: http
     token: token123jhk123
     path: sample/app
-healthcheck:
-    database:
-        - mongo:
-            - lib:  
-            - host:   
-            - port:  
-            - username: 
-            - password: 
-        - mysql:
-            - lib:  
-            - host:  
-            - port:  
-            - username:  
-            - password:  
-        - elasticsearch:
-            - host:  
-            - port:  
 logconfig:
     mode: development
     source_type: yaml_file
