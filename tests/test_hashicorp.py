@@ -5,11 +5,11 @@ import consul
 from hvac.api.secrets_engines import kv_v1 
 from unittest import mock
 from unittest.mock import MagicMock, patch
-from pycloud.hashicorp.consul_config import ConsulCon
-from pycloud.hashicorp.vault_config import VaultCon
-from pycloud.hashicorp.hashicorp_base import ConnBase
-from pycloud import CloudConn
-from pycloud.utils.logger import Logger
+from outfit import ConsulCon
+from outfit import VaultCon
+from outfit.hashicorp.hashicorp_base import ConnBase
+from outfit import CloudConn
+from outfit import Logger
 
 
 class TestHashicorp(unittest.TestCase):

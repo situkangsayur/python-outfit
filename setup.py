@@ -3,10 +3,14 @@ import re
 from setuptools import find_packages
 from setuptools import setup
 
+# parse_requirements() 
+with io.open('requirements.txt') as fp:
+    install_requires = fp.read()
+
 with io.open("README.md", "rt", encoding="utf8") as f:
     readme = f.read()
 
-with io.open("pycloud/__init__.py", "rt", encoding="utf8") as f:
+with io.open("outfit/__init__.py", "rt", encoding="utf8") as f:
     version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
 
@@ -15,7 +19,7 @@ CLASSIFIERS = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Environment :: Plugins"
+    "Environment :: Plugins",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
@@ -23,14 +27,14 @@ CLASSIFIERS = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 setup(
-    name="pycloud",
+    name="python-outfit",
     version=version,
     author="Hendri Karisma",
     author_email="situkangsayur@gmail.com",
     maintainer="Hendri Karisma",
     maintainer_email="situkangsayur@gmail.com",
-    url="https://situkangsayur.wordpress.com",
-    download_url="https://github.com/situkangsayur/python-cloud",
+    url="https://github.com/situkangsayur/python-outfit",
+    download_url="https://github.com/situkangsayur/python-outfit",
     license="MIT",
     include_package_data=True,
     description= "",
@@ -38,6 +42,7 @@ setup(
     platforms=["any"],
     classifiers=CLASSIFIERS,
     packages=find_packages(exclude=["tests", "tests.*"]),
+    install_requires=install_requires,
     tests_require=["coverage==4.2", 
                    "hvac==0.9.5", 
                    "python-consul==1.1.0", 

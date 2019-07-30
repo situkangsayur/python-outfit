@@ -2,9 +2,9 @@ import unittest
 
 import flask
 from healthcheck import HealthCheck
-from pycloud.utils.db_status import MongoLib
-from pycloud.utils.healtchcheck import HealthcheckList
-from pycloud.utils.logger import Logger
+from outfit.utils.db_status import MongoLib
+from outfit.utils.healtchcheck import HealthcheckList
+from outfit.utils.logger import Logger
 
 
 class BasicHealthCheckTest(unittest.TestCase):

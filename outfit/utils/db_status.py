@@ -1,5 +1,5 @@
 from enum import Enum
-from pycloud import Logger
+from outfit import Logger
 
 class MongoLib(Enum):
     """enumeration for mongo libs for python

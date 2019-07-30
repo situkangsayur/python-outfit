@@ -1,5 +1,5 @@
 from .db_status import DBStatus
-from pycloud import Logger
+from outfit import Logger
 
 class HealthcheckList(object):
 

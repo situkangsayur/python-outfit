@@ -3,8 +3,8 @@ import os
 import glob
 import json
 from unittest.mock import patch
-from pycloud import CloudConn
-from pycloud.utils.logger import Logger
+from outfit import CloudConn
+from outfit import Logger
 from consul import Consul
 
 class TestLogger(unittest.TestCase):
@@ -100,7 +100,7 @@ class TestLogger(unittest.TestCase):
     def test_setup_log_consulkv(self, mock_kv):
         self.delete_all_log_files()
         
-        from pycloud.utils.io import load_yaml
+        from outfit.utils.io import load_yaml
 
         mock_kv.return_value = [None, {'Value' : json.dumps(load_yaml('tests/assets/logging.yaml')).encode()}]
         CloudConn.setup('./tests/assets/config-log-kv.yaml')
