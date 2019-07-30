@@ -31,7 +31,7 @@ class Logger(object):
 
         config = consul_con.get_kv()
 
-        logging.config.dictConfig(log_config)
+        logging.config.dictConfig(config)
 
         loggers = [name for name in logging.root.manager.loggerDict]
         return loggers

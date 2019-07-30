@@ -1,9 +1,11 @@
 import unittest
 import os
 import glob
+import json
 from unittest.mock import patch
 from pycloud import CloudConn
 from pycloud.utils.logger import Logger
+from consul import Consul
 
 class TestLogger(unittest.TestCase):
     
@@ -93,15 +95,15 @@ class TestLogger(unittest.TestCase):
             temp_critical = fcritical.readlines()
             last_line = temp_critical[len(temp_critical) - 1]
             self.assertTrue('test_critical' in last_line)
-    '''
-    @patch.object(ConsulCon, 'get_kv')
-    def test_setup_log_consulkv(self):
+
+    @patch.object(Consul.KV, 'get')
+    def test_setup_log_consulkv(self, mock_kv):
         self.delete_all_log_files()
-        CloudConn.setup('./tests/assets/config-log-kv.yaml')
-        con = ConsulCon()
+        
         from pycloud.utils.io import load_yaml
-        result = load_yaml('./assets/logging.yaml')
-        con.get_kv.result = result 
+
+        mock_kv.return_value = [None, {'Value' : json.dumps(load_yaml('tests/assets/logging.yaml')).encode()}]
+        CloudConn.setup('./tests/assets/config-log-kv.yaml')
         
         Logger.info('test_info')
         with open('tests/logs/info.log', 'r') as finfo:
@@ -126,7 +128,6 @@ class TestLogger(unittest.TestCase):
             temp_critical = fcritical.readlines()
             last_line = temp_critical[len(temp_critical) - 1]
             self.assertTrue('test_critical' in last_line)
-    '''
 
 if __name__ == '__main__':
     unittest.main()
