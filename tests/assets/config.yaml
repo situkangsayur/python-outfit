@@ -4,7 +4,6 @@ vault:
     scheme: http
     token: token123jhk123
     path: sample/app
-    datakey: datakey.json
 consul:
     host: localhost
     port: 9500
