@@ -26,7 +26,6 @@ def merge_dict(dict1, dict2):
     
     union_dict = {} 
     for key in union:
-        Logger.debug(key)
         union_dict = construct_dict_from_dotkv(
             union_dict, key.split('.'), dotkv2[key] if key in set2 else dotkv1[key])
     
