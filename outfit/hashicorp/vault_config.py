@@ -1,14 +1,14 @@
 from .hashicorp_base import ConnBase
-from ..utils.logger import Logger
 import hvac
 import os
 import json
+from outfit import construct_dict_from_dotkv
 
 class VaultCon(ConnBase):
     """Class to construct the dict properties for the app from Consul and Vault
     """
     
-    exception_key = ['host','scheme', 'port', 'path', 'datakey']
+    exception_key = ['host','scheme', 'port', 'path']
     exception_dict = {}
     datakey = {}
 
@@ -21,7 +21,6 @@ class VaultCon(ConnBase):
 
         # construct the vault url
         vault_params['url'] = self.exception_dict['scheme'] +'://' + self.exception_dict['host'] + ':' + str(self.exception_dict['port'])
-        self.datakey = self.exception_dict['datakey']
 
         # construct the vault client objects
         self.vault = hvac.Client(**vault_params)
@@ -31,7 +30,7 @@ class VaultCon(ConnBase):
         self.secrets = self.vault.kv.read_secret(self.exception_dict['path'])['data']
    
 
-    def _construct_data_vault(self, data, key = '', info = {}):
+    def _construct_data_vault(self, key = '', info = {}):
         """construct secret configuration informations of the services from vault return config dict
 
         Keyword arguments:
@@ -39,17 +38,12 @@ class VaultCon(ConnBase):
         key -- the string of the path that will be concated with sub key in data dict (default '')
         info -- the informations of the structures of the app configurations that will be merged with secret info (default {})
         """
-        for k, v in data.items():
-            if type(v) == dict:
-                # recursive if the value of the item is dict
-                info[k] = self._construct_data_vault(v,(key + '.' +k) if key != '' else k, info[k] if k in info else {})
-            else:
-                # assign info dict with secret info with index k
-                info[k] = self.secrets[key + '.' + k]
-
-        return info
+        result = {}
+        for k, v in self.secrets.items():
+            result = construct_dict_from_dotkv(result, k.split('.'), v)
+        return result
 
     def get_secret_kv(self):
         """run config constructor return dict all configs
         """ 
-        return self._construct_data_vault(data = self.datakey)
+        return self._construct_data_vault()

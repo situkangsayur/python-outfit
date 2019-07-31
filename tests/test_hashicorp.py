@@ -1,7 +1,8 @@
 import unittest
 import yaml
 import os
-import consul
+import json
+from consul import Consul
 from hvac.api.secrets_engines import kv_v1 
 from unittest import mock
 from unittest.mock import MagicMock, patch
@@ -10,6 +11,8 @@ from outfit import VaultCon
 from outfit.hashicorp.hashicorp_base import ConnBase
 from outfit import Outfit
 from outfit import Logger
+from outfit import merge_dict
+from .assets.sample_respon_secret import secret_kv
 
 class TestHashicorp(unittest.TestCase):
 
@@ -56,23 +59,39 @@ class TestHashicorp(unittest.TestCase):
         con.get_kv = MagicMock(return_value = self.kv_sample)
         result = con.get_kv()
         self.assertEqual(result['db']['host'], 'localhost', 'the db host value is not equal')
-    
+    #@patch.object(VaultCon, '_construct_data_vault')
     @patch.object(kv_v1.KvV1,'read_secret' )
-    @patch.object(VaultCon, '_construct_data_vault')
-    def test_vault_init(self,mock_kv, mock_vault_con):
-        mock_vault_con.return_value = {'data' : {'password' : 'secrets123'}}
-        mock_kv.return_value = {'password' : 'secrets123'}
+    def test_vault_init(self,mock_kv):
+        #mock_vault_con.return_value = {'data' : secret_kv}
+        mock_kv.return_value = {'data' : secret_kv}
         con = VaultCon()
         result = con.get_secret_kv()
-        self.assertEqual(result['password'], 'secrets123', 'the vault client is None')
+        self.assertEqual(result['big_query']['client_id'], '1234567', 'the vault result is not match')
     
     @patch.object(kv_v1.KvV1,'read_secret' )
     def test_construct_data_vault(self, mock_kv):
-        mock_kv.return_value = {'data' : { 'db.password' : 'secrets123'}}
+        mock_kv.return_value = {'data' : secret_kv}
         con = VaultCon()
-        con.datakey = self.vault_data_key
         result = con.get_secret_kv()
-        self.assertEqual(result['db']['password'], 'secrets123', 'the vault client is None')
+
+        self.assertEqual(result['big_query']['client_id'], '1234567', 'the vault result is not match')
+
+    @patch.object(kv_v1.KvV1, 'read_secret')
+    @patch.object(Consul.KV, 'get')
+    def test_env_var(self, mock_consul_kv, mock_vault_kv):
+        mock_consul_kv.return_value = [None, { 'Value' : json.dumps(self.kv_sample).encode()}]
+        mock_vault_kv.return_value = {'data' : secret_kv}
+
+        Outfit.setup('tests/assets/config-env.yaml')
+        vault = VaultCon()
+        consul = ConsulCon()
+
+        result_vault = vault.get_secret_kv()
+        result_consul = consul.get_kv()
+        result = merge_dict(result_vault, result_consul)
+        
+        self.assertEqual(result['big_query']['client_id'], '1234567', ' client id from vault not match')
+        
 
 if __name__=='__main__':
     unittest.main()

@@ -5,6 +5,7 @@ import json
 from unittest.mock import patch
 from outfit import Outfit 
 from outfit import Logger
+from outfit import merge_dict
 from consul import Consul
 
 class TestLogger(unittest.TestCase):

@@ -10,9 +10,6 @@ consul:
     scheme: ${scheme_consul}
     token: ${token_consul}
     path: ${path_consul}
-healthcheck:
-  source_type: yaml_file
-  source_location:./tests/assets/healthcheck.yaml
 logconfig:
     mode: development
     source_type: yaml_file

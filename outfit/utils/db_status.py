@@ -1,5 +1,4 @@
 from enum import Enum
-from outfit import Logger
 
 class MongoLib(Enum):
     """enumeration for mongo libs for python
@@ -40,7 +39,6 @@ class DBStatus(object):
             return result
 
         list_lib = [None, pymongo, mongoengine]
-        Logger.info(mongo_libs)
         result = []
         for m in mongo_libs:
             result = list_lib[m.value - 1] if m != None else False, 'mongo driver is not found'

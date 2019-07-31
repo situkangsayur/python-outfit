@@ -1,5 +1,4 @@
 from .db_status import DBStatus
-from outfit import Logger
 
 class HealthcheckList(object):
 
@@ -14,7 +13,6 @@ class HealthcheckList(object):
             'mysql': lambda x, y: HealthcheckList.__dbstatus.mysql_checker(x),
             'redis': lambda x, y: HealthcheckList.__dbstatus.redis_checker()
         }
-        Logger.info('------------------------------------------------')
         
 
         for key, value in service_list.items():

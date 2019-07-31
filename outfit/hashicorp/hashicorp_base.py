@@ -28,11 +28,13 @@ class ConnBase(ABC):
                 value = str(v) if type(v) == int else v
                 
                 def check_envvar(val):
-                    return os.environ[v[1:]] if v[1:] in os.environ else None
-                
+                    return os.environ[val] if val in os.environ else None
+
                 # checking if the string of value is in environment variables
-                temp = check_envvar(v[1:len(v)-1]) if ('${' == value[0:1]) and ('}' == value[len(value)-1]) else v
-                    
+                temp = check_envvar(v[2:len(v)-1]) if ('${' == value[0:2]) and ('}' == value[len(value)-1]) else v
+                if temp == None:
+                    raise Exception('var value  not found')
+
                 # checking if the string of value is in exception keys
                 if k not in exception_key:
                     # set the real value to params[k]
@@ -42,5 +44,6 @@ class ConnBase(ABC):
                     # if the string of value is in exception keys
                     # assing the temp value (real value) to exception_dict for index v[1:]
                     self.exception_dict[k] =temp if type(temp) == int else temp
+
 
             return params
