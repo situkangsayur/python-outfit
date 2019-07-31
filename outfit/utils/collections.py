@@ -1,5 +1,4 @@
 def construct_dict_from_dotkv(dict = {}, fields = [], value = None):
-    from outfit import Logger
     if len(fields) <= 1:
         dict[fields[0]] = value
     else:
@@ -18,7 +17,6 @@ def construct_dotkv_from_dict(source = {}, key = '', temp_result = {}):
     return temp_result   
 
 def merge_dict(dict1, dict2):
-    from outfit import Logger
     dotkv1 = construct_dotkv_from_dict(source = dict1)
     dotkv2 = construct_dotkv_from_dict(source = dict2)
     set1 = set(dotkv1)
