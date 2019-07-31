@@ -10,4 +10,7 @@ consul:
     scheme: ${scheme_consul}
     token: ${token_consul}
     path: ${path_consul}
-
+logconfig:
+    mode: development
+    source_type: yaml_file
+    source_location: ./tests/assets/logging.yaml

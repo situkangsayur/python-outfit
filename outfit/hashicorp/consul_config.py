@@ -4,21 +4,22 @@ from .hashicorp_base import ConnBase
 import consul
 import os
 import json
+from ..utils.logger import Logger
 
 class ConsulCon(ConnBase):
     """Class to construct the dict properties for the app from Consul and Vault
     """
 
-    exception_key = ['host_vault','scheme_vault', 'port_vault', 'path_vault']
+    exception_key = ['path']
     exception_dict = {}
+    cons = None
 
     def __init__(self):
         """Constructor inisiating all properties
         """
-        consul_params = {}
-        
+        ConnBase.__init__(self)
         # construct the consul and vault params
-        consul_params = get_configs_dict(config.consul)
+        consul_params = self.get_configs_dict(self._content['consul'], self.exception_key)
 
         # construct the consul
         self.cons = consul.Consul(**consul_params)
@@ -26,7 +27,7 @@ class ConsulCon(ConnBase):
     def get_kv(self):
         """run config constructor return dict all configs
         """
-        temp = self.cons.kv.get(self.exception_dict['path_consul'])[1]['Value']
+        temp = self.cons.kv.get(self.exception_dict['path'])[1]['Value']
         result = json.loads(temp.decode('utf-8')) if temp else ''
         return result
 

@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class MongoLib(Enum):
     """enumeration for mongo libs for python
     """
@@ -9,27 +8,7 @@ class MongoLib(Enum):
     MONGOENGINE = 3
 
 
-class Healthchecker(object):
-
-    def __init__(self, healthcheck, service_list, app):
-        self.healthcheck = healthcheck
-
-        service_enum = {
-            'mongoengine': lambda x, y: self.mongo_checker(x, y),
-            'postgres': lambda x, y: self.pgsql_checker(x),
-            'mysql': lambda x, y: self.mysql_checker(x),
-            'redis': lambda x, y: self.redis_checker()
-        }
-
-        for key, value in service_list.items():
-            check_result = service_enum[key](
-                value['connection'],
-                value['lib_list'] if 'lib_list' in value else None) if value != None else service_enum[key](None, None)
-            if isinstance(check_result, list):
-                for temp in check_result:
-                    self.healthcheck.add_check(temp)
-            else:
-                self.healthcheck.add_check(check_result)
+class DBStatus(object):
 
     def mongo_checker(self, dbmongo, mongo_libs):
 
@@ -60,10 +39,9 @@ class Healthchecker(object):
             return result
 
         list_lib = [None, pymongo, mongoengine]
-
         result = []
         for m in mongo_libs:
-            result = list_lib[m.value - 1]
+            result = list_lib[m.value - 1] if m != None else False, 'mongo driver is not found'
 
         return result
 

@@ -1,8 +1,7 @@
 .DS_Store
 # python compiled file
-*.pyc
-pom.xml
-*.pyo
+.pyc
+.pyo
 
 # env dir
 venv
@@ -18,22 +17,22 @@ build/
 
 # distribution files
 dist/
-*.egg
-*.egg-info/
+.egg
+.eggs
+.egg-info/
 _mailinglist
 .tox/
 .cache/
 .idea/
 _build/
 
-
 # intellij idea project directory
 .idea
 
 # temp editing files
-*.swap
-*.swp
-*.swo
+.swap
+.swp
+.swo
 *.*_cahce
 
 __pycache__
@@ -42,7 +41,7 @@ __pycache__
 
 # migration
 migrations
-*.out
+.out
 .coverage
 .coverage.*
 coverage.xml
@@ -54,11 +53,10 @@ coverage.xml
 .pytest_cache
 .scannerwork/*
 htmlcov/
-*,cover
+*.cover
 
 
 # logs
 *.log
 tags
-*.tar.gz
-
+.tar.gz
