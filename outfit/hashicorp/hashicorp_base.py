@@ -2,7 +2,7 @@ from abc import ABC
 import yaml
 import os
 from ..utils.logger import Logger
-from ..config_loader import CloudConn
+from ..config_loader import Outfit
 
 class ConnBase(ABC):
     exception_dict = {}
@@ -10,7 +10,7 @@ class ConnBase(ABC):
     def __init__(self):
         '''Connection Base constructor init the file config
         '''
-        self._content = CloudConn.content
+        self._content = Outfit.content
 
     def get_configs_dict(self, source = None, exception_key = None):
             """Constructing consul/vault properties from bootstrap.py return list of configs

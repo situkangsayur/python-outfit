@@ -2,15 +2,15 @@ import logging
 from .utils.logger import Logger
 from .utils.io import load_yaml
 
-class CloudConn(object):
+class Outfit(object):
     
     path = None 
     content = None
     
     @staticmethod
     def setup(path):
-        CloudConn.content = load_yaml(path)
-        log_config = CloudConn.content['logconfig'] if 'logconfig' in CloudConn.content else None
+        Outfit.content = load_yaml(path)
+        log_config = Outfit.content['logconfig'] if 'logconfig' in Outfit.content else None
         Logger.mode = 'root'
         if log_config != None:
             mode = log_config['mode'] if 'mode' in log_config else 'root'

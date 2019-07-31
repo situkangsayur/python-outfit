@@ -8,9 +8,8 @@ from unittest.mock import MagicMock, patch
 from outfit import ConsulCon
 from outfit import VaultCon
 from outfit.hashicorp.hashicorp_base import ConnBase
-from outfit import CloudConn
+from outfit import Outfit
 from outfit import Logger
-
 
 class TestHashicorp(unittest.TestCase):
 
@@ -41,7 +40,7 @@ class TestHashicorp(unittest.TestCase):
                 'port' : 9200
             }
         }
-        CloudConn.setup(path = 'tests/assets/config.yaml')
+        Outfit.setup(path = 'tests/assets/config.yaml')
 
     def test_consul_init(self):
         con = ConsulCon()

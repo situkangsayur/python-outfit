@@ -3,7 +3,7 @@ import os
 import glob
 import json
 from unittest.mock import patch
-from outfit import CloudConn
+from outfit import Outfit 
 from outfit import Logger
 from consul import Consul
 
@@ -16,7 +16,7 @@ class TestLogger(unittest.TestCase):
 
     def test_setup_log_json(self):
         self.delete_all_log_files()
-        CloudConn.setup('./tests/assets/config-log-json.yaml')
+        Outfit.setup('./tests/assets/config-log-json.yaml')
         Logger.info('test_info')
         with open('tests/logs/info.log', 'r') as finfo:
             temp_info = finfo.readlines()
@@ -44,7 +44,7 @@ class TestLogger(unittest.TestCase):
 
     def test_setup_log_yaml(self):
         self.delete_all_log_files()
-        CloudConn.setup('./tests/assets/config.yaml')
+        Outfit.setup('./tests/assets/config.yaml')
         Logger.info('test_info')
         with open('tests/logs/info.log', 'r') as finfo:
             temp_info = finfo.readlines()
@@ -71,7 +71,7 @@ class TestLogger(unittest.TestCase):
     
     def test_setup_log_py(self):
         self.delete_all_log_files()
-        CloudConn.setup('./tests/assets/config-log-py.yaml')
+        Outfit.setup('./tests/assets/config-log-py.yaml')
         Logger.info('test_info')
         with open('tests/logs/info.log', 'r') as finfo:
             temp_info = finfo.readlines()
@@ -103,7 +103,7 @@ class TestLogger(unittest.TestCase):
         from outfit.utils.io import load_yaml
 
         mock_kv.return_value = [None, {'Value' : json.dumps(load_yaml('tests/assets/logging.yaml')).encode()}]
-        CloudConn.setup('./tests/assets/config-log-kv.yaml')
+        Outfit.setup('./tests/assets/config-log-kv.yaml')
         
         Logger.info('test_info')
         with open('tests/logs/info.log', 'r') as finfo:
