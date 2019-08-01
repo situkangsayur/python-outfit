@@ -20,7 +20,7 @@ How to install **Outfit**
 =========================
 
 ::
-   pip3 install python-outfit
+  pip install python-outfit
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
