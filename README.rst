@@ -7,20 +7,20 @@ Python Outfit is set of dependencies across a range of python standard package f
 
 Features for 0.0.1 version:
 
-1. Load config using yaml
-2. Integrated to Consul 
-3. Load config file from a path in KV Consul
-5. Integrated to Vault
-6. Load Secret KV from Vault
-7. add some db status to py-healtchecker
-8. simple Logger
-9. Load Logger configurations from consul, yaml, json, and dictionary logging var in python file
+1. Load config using yaml.
+2. Integrated to Consul.
+#. Load config file from a path in KV Consul.
+#. Integrated to Vault.
+#. Load Secret KV from Vault.
+#. add some db status to py-healtchecker.
+#. simple Logger.
+#. Load Logger configurations from consul, yaml, json, and dictionary logging var in python file.
 
 How to install **Outfit**
 =========================
 
-:: 
-pip3 install python-outfit
+::
+        pip3 install python-outfit
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
@@ -29,8 +29,8 @@ Quick Start
 
 Just add outfit packe then import the Class that you need. First to load configuration import Outfit class. Then call *Oufit.setup('config_path')* call setup static method and pass the path of the configuration file to *Oufit.setup()*
 
-.. code:: python
-        :linenos
+.. code-block:: python
+        :linenos:
         from outfit import Outfit
 
         if __name__ == '__main__':
@@ -38,8 +38,8 @@ Just add outfit packe then import the Class that you need. First to load configu
 
 Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault Connection, or you can use **Logger** to do some logging text for debug, info, error, or critical mode.
 
-.. code:: python
-        :linenos
+.. code-block:: python
+        :linenos:
         from outfit import Outfit
         from outfit import ConsulCon, VaultCon
         from outfit import Logger
@@ -61,8 +61,8 @@ The consul and vault connection will get the configs information from yaml file,
 
 This is the example of the .yaml file for **outfit** configurations:
 
-.. codeblock:: yaml
-        :linenos
+.. code-block:: yaml
+        :linenos:
         vault:
             host: localhost
             port: 9500
@@ -88,7 +88,7 @@ We can see that the logconfig will provide the log configuration information, it
 Sample for log config using *source_type* consul kv:
 
 .. code-block:: yaml
-        :linenos
+        :linenos:
         vault:
             host: localhost
             port: 9500
@@ -110,7 +110,7 @@ Sample for log config using *source_type* consul kv:
 And for logging yaml file or the structures :
 
 .. code-block:: yaml
-        :linenos
+        :linenos:
         ---
         version: 1
         disable_existing_loggers: False
