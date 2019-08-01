@@ -19,8 +19,8 @@ Features for 0.0.1 version:
 How to install **Outfit**
 =========================
 
-::
-  pip install python-outfit
+.. code
+    pip install python-outfit::
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
