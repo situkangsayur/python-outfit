@@ -38,6 +38,7 @@ setup(
     license="MIT",
     include_package_data=True,
     description= "",
+    long_description_content_type="text/x-rst",
     long_description=readme,
     platforms=["any"],
     classifiers=CLASSIFIERS,
@@ -62,6 +63,7 @@ setup(
             "pallets-sphinx-themes",
             "sphinxcontrib-log-cabinet",
             "sphinx-issues",
+            "readme_renderer"
         ],
     }
 )
