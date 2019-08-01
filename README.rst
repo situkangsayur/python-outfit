@@ -19,7 +19,6 @@ Features for 0.0.1 version:
 How to install **Outfit**
 =========================
 You can use pip for installing python-outfit.
-
 .. code:: bash
     pip install python-outfit
 
