@@ -29,7 +29,7 @@ Quick Start
 
 Just add outfit packe then import the Class that you need. First to load configuration import Outfit class. Then call *Oufit.setup('config_path')* call setup static method and pass the path of the configuration file to *Oufit.setup()*
 
-.. code-block:: python
+.. code:: python
         :linenos:
         from outfit import Outfit
 
@@ -38,7 +38,7 @@ Just add outfit packe then import the Class that you need. First to load configu
 
 Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault Connection, or you can use **Logger** to do some logging text for debug, info, error, or critical mode.
 
-.. code-block:: python
+.. code:: python
         :linenos
         from outfit import Outfit
         from outfit import ConsulCon, VaultCon
@@ -61,7 +61,7 @@ The consul and vault connection will get the configs information from yaml file,
 
 This is the example of the .yaml file for **outfit** configurations:
 
-.. code-block:: yaml
+.. code:: yaml
         :linenos
         vault:
             host: localhost
@@ -87,7 +87,7 @@ We can see that the logconfig will provide the log configuration information, it
 
 Sample for log config using *source_type* consul kv:
 
-.. code-block:: yaml
+.. code:: yaml
         :linenos
         vault:
             host: localhost
@@ -109,7 +109,7 @@ Sample for log config using *source_type* consul kv:
 
 And for logging yaml file or the structures :
 
-.. code-block:: yaml
+.. code:: yaml
         :linenos
         ---
         version: 1
