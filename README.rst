@@ -30,25 +30,25 @@ Quick Start
 Just add outfit packe then import the Class that you need. First to load configuration import Outfit class. Then call *Oufit.setup('config_path')* call setup static method and pass the path of the configuration file to *Oufit.setup()*
 
 .. code:: python
-        :linenos:
-        from outfit import Outfit
+    :linenos:
+    from outfit import Outfit
 
-        if __name__ == '__main__':
-                Outfit.setup('conf/configuration.yaml')
+    if __name__ == '__main__':
+        Outfit.setup('conf/configuration.yaml')
 
 Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault Connection, or you can use **Logger** to do some logging text for debug, info, error, or critical mode.
 
 .. code:: python
-        :linenos
-        from outfit import Outfit
-        from outfit import ConsulCon, VaultCon
-        from outfit import Logger
+    :linenos
+    from outfit import Outfit
+    from outfit import ConsulCon, VaultCon
+    from outfit import Logger
 
-        if __name__ == '__main__':
-                Outfit.setup('conf/configuration.yaml')
-                con_consul = ConsulCon()
+    if __name__ == '__main__':
+        Outfit.setup('conf/configuration.yaml')
+        con_consul = ConsulCon()
 
-                Logger.debug('get the information such as config file from consul kv then will be returned as python dictionary')
+        Logger.debug('get the information such as config file from consul kv then will be returned as python dictionary')
                 config_dict = con_consul.get_kv()
 
                 con_vault = VaultCon()
@@ -62,23 +62,23 @@ The consul and vault connection will get the configs information from yaml file,
 This is the example of the .yaml file for **outfit** configurations:
 
 .. code:: yaml
-        :linenos
-        vault:
-            host: localhost
-            port: 9500
-            scheme: http
-            token: token123jhk123
-            path: sample/app
-        consul:
-            host: localhost
-            port: 9500
-            scheme: http
-            token: token123jhk123
-            path: sample/app
-        logconfig:
-            mode: development
-            source_type: yaml_file
-            source_location: ./tests/assets/logging.yaml
+    :linenos
+    vault:
+        host: localhost
+        port: 9500
+        scheme: http
+        token: token123jhk123
+        path: sample/app
+    consul:
+        host: localhost
+        port: 9500
+        scheme: http
+        token: token123jhk123
+        path: sample/app
+    logconfig:
+        mode: development
+        source_type: yaml_file
+        source_location: ./tests/assets/logging.yaml
 
 We can see that the logconfig will provide the log configuration information, it contains mode, source_type, and source_location.
 - **mode** of log it depends on the logger profile that you write in log config.
@@ -88,96 +88,96 @@ We can see that the logconfig will provide the log configuration information, it
 Sample for log config using *source_type* consul kv:
 
 .. code:: yaml
-        :linenos
-        vault:
-            host: localhost
-            port: 9500
-            scheme: http
-            token: token123jhk123
-            path: sample/app
-        consul:
-            host: localhost
-            port: 9500
-            scheme: http
-            token: token123jhk123
-            path: sample/app
-        logconfig:
-            mode: development
-            source_type: consulkv  
-            source_location: assets/logging.yaml
+    :linenos
+    vault:
+        host: localhost
+        port: 9500
+        scheme: http
+        token: token123jhk123
+        path: sample/app
+    consul:
+        host: localhost
+        port: 9500
+        scheme: http
+        token: token123jhk123
+        path: sample/app
+    logconfig:
+        mode: development
+        source_type: consulkv  
+        source_location: assets/logging.yaml
 
 
 And for logging yaml file or the structures :
 
 .. code:: yaml
-        :linenos
-        ---
-        version: 1
-        disable_existing_loggers: False
-        formatters:
-            simple:
-              format: "%(asctime)s, %(levelname)s:%(filename)s(%(lineno)d)> %(message)s"
-         
-        handlers:
-            debug_console:
-                class: logging.StreamHandler
-                level: DEBUG
-                formatter: simple
-                stream: ext://sys.stdout
+    :linenos
+    ---
+    version: 1
+    disable_existing_loggers: False
+    formatters:
+        simple:
+          format: "%(asctime)s, %(levelname)s:%(filename)s(%(lineno)d)> %(message)s"
+     
+    handlers:
+        debug_console:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: simple
+            stream: ext://sys.stdout
 
-            production_console:
-                class: logging.StreamHandler
-                level: INFO
-                formatter: simple
-                stream: ext://sys.stdout
+        production_console:
+            class: logging.StreamHandler
+            level: INFO
+            formatter: simple
+            stream: ext://sys.stdout
 
-            
-            debug_file_handler:
-                class: logging.handlers.RotatingFileHandler
-                level: DEBUG
-                formatter: simple
-                filename: tests/logs/debug.log
-                maxBytes: 10485760 # 10MB
-                backupCount: 20
-                encoding: utf8
-         
-            info_file_handler:
-                class: logging.handlers.RotatingFileHandler
-                level: INFO
-                formatter: simple
-                filename: tests/logs/info.log
-                maxBytes: 10485760 # 10MB
-                backupCount: 20
-                encoding: utf8
-         
-            error_file_handler:
-                class: logging.handlers.RotatingFileHandler
-                level: ERROR
-                formatter: simple
-                filename: tests/logs/errors.log
-                maxBytes: 10485760 # 10MB
-                backupCount: 20
-                encoding: utf8
+        
+        debug_file_handler:
+            class: logging.handlers.RotatingFileHandler
+            level: DEBUG
+            formatter: simple
+            filename: tests/logs/debug.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
+     
+        info_file_handler:
+            class: logging.handlers.RotatingFileHandler
+            level: INFO
+            formatter: simple
+            filename: tests/logs/info.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
+     
+        error_file_handler:
+            class: logging.handlers.RotatingFileHandler
+            level: ERROR
+            formatter: simple
+            filename: tests/logs/errors.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
 
-            critical_file_handler:
-                class: logging.handlers.RotatingFileHandler
-                level: CRITICAL
-                formatter: simple
-                filename: tests/logs/critical.log
-                maxBytes: 10485760 # 10MB
-                backupCount: 20
-                encoding: utf8
-         
-        loggers:
-            development:
-                level: DEBUG
-                handlers: [debug_console, debug_file_handler, info_file_handler, error_file_handler, critical_file_handler]
-                propagate: True
+        critical_file_handler:
+            class: logging.handlers.RotatingFileHandler
+            level: CRITICAL
+            formatter: simple
+            filename: tests/logs/critical.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
+     
+    loggers:
+        development:
+            level: DEBUG
+            handlers: [debug_console, debug_file_handler, info_file_handler, error_file_handler, critical_file_handler]
+            propagate: True
 
-            production:
-                level: INFO
-                handlers: [production_console, info_file_handler, error_file_handler, critical_file_handler]
-                propagate: True
-        ...
+        production:
+            level: INFO
+            handlers: [production_console, info_file_handler, error_file_handler, critical_file_handler]
+            propagate: True
+    ...
 
 you can get more detail about log config in yaml from `this link <https://docs.python.org/3/howto/logging.html>`_
