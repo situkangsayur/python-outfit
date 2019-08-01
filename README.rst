@@ -20,7 +20,7 @@ How to install **Outfit**
 =========================
 
 ::
-        pip3 install python-outfit
+   pip3 install python-outfit
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
@@ -39,7 +39,7 @@ Just add outfit packe then import the Class that you need. First to load configu
 Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault Connection, or you can use **Logger** to do some logging text for debug, info, error, or critical mode.
 
 .. code-block:: python
-        :linenos:
+        :linenos
         from outfit import Outfit
         from outfit import ConsulCon, VaultCon
         from outfit import Logger
@@ -62,7 +62,7 @@ The consul and vault connection will get the configs information from yaml file,
 This is the example of the .yaml file for **outfit** configurations:
 
 .. code-block:: yaml
-        :linenos:
+        :linenos
         vault:
             host: localhost
             port: 9500
@@ -88,7 +88,7 @@ We can see that the logconfig will provide the log configuration information, it
 Sample for log config using *source_type* consul kv:
 
 .. code-block:: yaml
-        :linenos:
+        :linenos
         vault:
             host: localhost
             port: 9500
@@ -110,7 +110,7 @@ Sample for log config using *source_type* consul kv:
 And for logging yaml file or the structures :
 
 .. code-block:: yaml
-        :linenos:
+        :linenos
         ---
         version: 1
         disable_existing_loggers: False
