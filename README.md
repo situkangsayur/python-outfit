@@ -15,7 +15,7 @@ Features for 0.0.1 version:
 9. Load Logger configurations from consul, yaml, json, and dictionary logging var in python file
 
 
-##How to install **Outfit** : 
+## How to install **Outfit** : 
 
 ```
 pip3 install python-outfit
@@ -23,7 +23,7 @@ pip3 install python-outfit
 
 pypi link : [link to outfit!](https://pypi.org/project/python-outfit/)
 
-##Quick Start
+## Quick Start
 
 Just add outfit packe then import the Class that you need. First to load configuration import Outfit class. Then call *Oufit.setup('config_path')* call setup static method and pass the path of the configuration file to *Oufit.setup()*
 
