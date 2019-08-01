@@ -49,12 +49,12 @@ Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault
         con_consul = ConsulCon()
 
         Logger.debug('get the information such as config file from consul kv then will be returned as python dictionary')
-                config_dict = con_consul.get_kv()
+        config_dict = con_consul.get_kv()
 
-                con_vault = VaultCon()
+        con_vault = VaultCon()
 
-                Logger.info('get the secret information in vault secret kv then will be returned as python dictionary')
-                secret_dict = con_vault.get_secret_kv()
+        Logger.info('get the secret information in vault secret kv then will be returned as python dictionary')
+        secret_dict = con_vault.get_secret_kv()
 
 
 The consul and vault connection will get the configs information from yaml file, including the Logger config source.
