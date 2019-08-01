@@ -18,9 +18,9 @@ Features for 0.0.1 version:
 
 How to install **Outfit**
 =========================
-
-::
-  pip install python-outfit
+You can use pip for installing python-outfit
+.. code:: bash
+    pip install python-outfit
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
@@ -80,10 +80,11 @@ This is the example of the .yaml file for **outfit** configurations:
         source_type: yaml_file
         source_location: ./tests/assets/logging.yaml
 
-We can see that the logconfig will provide the log configuration information, it contains mode, source_type, and source_location.
-* **mode** of log it depends on the logger profile that you write in log config.
-* **source_type**, it can be **yaml_file**, **json_file**, **consul_kv**, and **dictionary** type from python file.
-* **source_location**, it will provide the location of the files or consul kv directory.
+We can see that the logconfig will provide the log configuration information, it contains mode, source_type, and source_location:
+
+- **mode** of log it depends on the logger profile that you write in log config.
+- **source_type**, it can be **yaml_file**, **json_file**, **consul_kv**, and **dictionary** type from python file.
+- **source_location**, it will provide the location of the files or consul kv directory.
 
 
 Sample for log config using *source_type* consul kv:
