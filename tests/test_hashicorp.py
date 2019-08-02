@@ -45,6 +45,17 @@ class TestHashicorp(unittest.TestCase):
             }
         }
         Outfit.setup(path = 'tests/assets/config.yaml')
+        os.environ['host_vault']= 'localhost'
+        os.environ['port_vault']= '12345'
+        os.environ['scheme_vault']= 'http' 
+        os.environ['token_vault']= 'qwerty123'
+        os.environ['path_vault']= 'application'
+
+        os.environ['host_consul']= 'localhost'
+        os.environ['port_consul']= '12345'
+        os.environ['scheme_consul']= 'http' 
+        os.environ['token_consul']= 'qwerty123'
+        os.environ['path_consul']= 'application'
 
     def test_consul_init(self):
         con = ConsulCon()
