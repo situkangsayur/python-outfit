@@ -18,9 +18,11 @@ Features for 0.0.1 version:
 
 How to install **Outfit**
 =========================
+You can use pip for installing python-outfit.
 
-.. code
-    pip install python-outfit::
+::
+
+    pip install python-outfit
 
 pypi link : `link to outfit <https://pypi.org/project/python-outfit/>`_
 
@@ -49,12 +51,12 @@ Then you can import **ConsulCon** for Consul Connection or **VaulCon** for Vault
         con_consul = ConsulCon()
 
         Logger.debug('get the information such as config file from consul kv then will be returned as python dictionary')
-                config_dict = con_consul.get_kv()
+        config_dict = con_consul.get_kv()
 
-                con_vault = VaultCon()
+        con_vault = VaultCon()
 
-                Logger.info('get the secret information in vault secret kv then will be returned as python dictionary')
-                secret_dict = con_vault.get_secret_kv()
+        Logger.info('get the secret information in vault secret kv then will be returned as python dictionary')
+        secret_dict = con_vault.get_secret_kv()
 
 
 The consul and vault connection will get the configs information from yaml file, including the Logger config source.
@@ -80,10 +82,12 @@ This is the example of the .yaml file for **outfit** configurations:
         source_type: yaml_file
         source_location: ./tests/assets/logging.yaml
 
-We can see that the logconfig will provide the log configuration information, it contains mode, source_type, and source_location.
+We can see that the logconfig will provide the log configuration information, it contains mode, source_type, and source_location:
+
 - **mode** of log it depends on the logger profile that you write in log config.
-- **source_type**, it can be yaml_file, json_file, consul kv, and dictionary var in python file.
+- **source_type**, it can be **yaml_file**, **json_file**, **consul_kv**, and **dictionary** type from python file.
 - **source_location**, it will provide the location of the files or consul kv directory.
+
 
 Sample for log config using *source_type* consul kv:
 
