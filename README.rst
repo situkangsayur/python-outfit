@@ -1,7 +1,14 @@
 =============
 python-outfit
 =============
-utilities for distributed environment
+
+:Info: utilities for distributed environment
+:Repository: https://github.com/situkangsayur/python-outfit
+:Author: Hendri Karisma (http://github.com/situkangsayur)
+:Maintainer: Hendri Karisma (http://github.com/situkangsayur)
+
+.. image:: https://travis-ci.org/situkangsayur/python-outfit.svg?branch=master
+  :target: https://travis-ci.org/situkangsayur/python-outfit
 
 Python Outfit is set of dependencies across a range of python standard package for software development. 
 
