@@ -11,7 +11,7 @@ logging = {
             'backupCount': 20,
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf8',
-            'filename': 'tests/logs/critical.log',
+            'filename': 'tests/test_logs/critical.log',
             'formatter': 'simple',
             'level': 'CRITICAL',
             'maxBytes': 10485760
@@ -26,7 +26,7 @@ logging = {
             'backupCount': 20,
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf8',
-            'filename': 'tests/logs/debug.log',
+            'filename': 'tests/test_logs/debug.log',
             'formatter': 'simple',
             'level': 'DEBUG',
             'maxBytes': 10485760
@@ -35,7 +35,7 @@ logging = {
             'backupCount': 20,
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf8',
-            'filename': 'tests/logs/errors.log',
+            'filename': 'tests/test_logs/errors.log',
             'formatter': 'simple',
             'level': 'ERROR',
             'maxBytes': 10485760
@@ -44,7 +44,7 @@ logging = {
             'backupCount': 20,
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf8',
-            'filename': 'tests/logs/info.log',
+            'filename': 'tests/test_logs/info.log',
             'formatter': 'simple',
             'level': 'INFO',
             'maxBytes': 10485760
