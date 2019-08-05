@@ -10,7 +10,7 @@ python-outfit
 .. image:: https://travis-ci.org/situkangsayur/python-outfit.svg?branch=master
   :target: https://travis-ci.org/situkangsayur/python-outfit
 
-.. image:: https://coveralls.io/github/situkangsayur/python-outfit.svg?branch=master
+.. image:: https://coveralls.io/repos/github/situkangsayur/python-outfit/badge.svg?branch=master
   :target: https://coveralls.io/github/situkangsayur/python-outfit?branch=master
 
 Python Outfit is set of dependencies across a range of python standard package for software development. 
