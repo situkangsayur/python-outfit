@@ -60,3 +60,6 @@ htmlcov/
 *.log
 tags
 .tar.gz
+
+# keys
+.coveralls.yml
