@@ -6,10 +6,13 @@ python:
   - "3.6-dev"
 install:
   - pip3 install -r requirements.txt
+  - pip3 install python-coveralls
   - pip3 install coverage
   - pip3 install twine
 
 script:
-  - python3 setup.py test
+  - coverage run --source outfit setup.py test
+after_success:
+  - coveralls
 
   
