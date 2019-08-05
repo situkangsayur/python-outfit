@@ -9,6 +9,10 @@ from outfit import merge_dict
 from consul import Consul
 
 class TestLogger(unittest.TestCase):
+
+    def setUp(self):
+        if not os.path.exists('tests/test_logs'):
+            os.mkdir('tests/test_logs')
     
     def delete_all_log_files(self):
         filelist = glob.glob(os.path.join('tests/test_logs', '*'))
