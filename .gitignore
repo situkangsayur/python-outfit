@@ -57,6 +57,7 @@ htmlcov/
 
 
 # logs
-*.log
+*\.log
+^logs$
 tags
 .tar.gz
