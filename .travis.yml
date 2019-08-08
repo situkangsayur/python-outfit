@@ -1,24 +1,26 @@
 language: python
 branches:
   only:
-    - master
-    - stable
+  - master
+  - stable
 python:
-  - "3.5"
-  - "3.6"
-  - "3.5-dev"
-  - "3.6-dev"
+- '3.5'
+- '3.6'
+- 3.5-dev
+- 3.6-dev
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install python-coveralls
-  - pip3 install coverage
-  - pip3 install twine
-
+- pip3 install -r requirements.txt
+- pip3 install python-coveralls
+- pip3 install coverage
+- pip3 install twine
 script:
-  - coverage run --source outfit setup.py test
-  - python3 setup.py sdist bdist_wheel
+- coverage run --source outfit setup.py test
+- python3 setup.py sdist bdist_wheel
 after_success:
-  - coveralls
-  - twine upload dist/*
-
-  
+- coveralls
+deploy:
+  provider: pypi
+  user: situkangsayur
+  password:
+    secure: GW9a4g//8WCiA+SpauiHC/DnajYfhsrRlkZP/L0GW+FybUGrGPB7Q77EU27o6KXLtIOq2IFVv/820+9cZqrbk0TY4tsAgTU2+tKZ4lAPZd4U/yy8nmwl2z+DIIIhJS5ksfLiItADcL3qnzHqo5f3vUQGtUYNEr4UM+lqZeAUD2gXBd/AMycOEmRm1GBHRwKbj3XDSgdY0174cs6xnWkmE4K34A8ZkHuAXk73agEqBIB0gne6UuzYJQgboSEFktkriVFsZeu5n1pLmVdr/QyWcZYK/FN9lbc3GVmursUVUf1jt9Pwm6zcNbpaDIllRfvl9PeQm+CN1wZRO3uKEMee8dzaYU5VPy8XhTyMWpZaG7DI+TsY1JVAbwHSWRbAVprLRPTnvOwg16odhUhKZP3CO8GmEWHRQXv8/zRl/7TcorrqUBnjtM3muwWLVOQcgaORRehLsC2DusJyVbwvT4MCumE49cvT509ET2oxNb7dC8c3Yv91nWlf5DZ6wDyC7EiynsFXP/4qPP/7aYeM+HnpS2oXq5eWZ1FINB0acY2dJrUpBy7IC8XXNrrmXPX95+dK08uMcEM/goq2dRI+sGXL89vfaLlxFNM/560mSMJTi66rm9Y87/ZF3Z75LH9LRb6hTR/O+mIBgnNS+sxHb6oBO29iXGALzsD3S5CkBAnha80=
+  distributions: sdist bdist_wheel
