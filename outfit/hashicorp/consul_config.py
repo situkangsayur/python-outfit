@@ -14,15 +14,16 @@ class ConsulCon(ConnBase):
     exception_dict = {}
     cons = None
 
-    def __init__(self):
+    def __init__(self, params = None):
         """Constructor inisiating all properties
         """
         ConnBase.__init__(self)
         # construct the consul and vault params
-        consul_params = self.get_configs_dict(self._content['consul'], self.exception_key)
+        consul_params = self.get_configs_dict(self._content['consul'], self.exception_key) if not params else params
 
         # construct the consul
         self.cons = consul.Consul(**consul_params)
+
    
     def get_kv(self):
         """run config constructor return dict all configs
