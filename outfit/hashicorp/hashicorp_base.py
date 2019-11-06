@@ -10,7 +10,7 @@ class ConnBase(ABC):
     def __init__(self):
         '''Connection Base constructor init the file config
         '''
-        self._content = Outfit.content
+        self._content = Outfit.content if Outfit.content else None
 
     def get_configs_dict(self, source = None, exception_key = None):
             """Constructing consul/vault properties from bootstrap.py return list of configs
