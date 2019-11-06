@@ -12,12 +12,12 @@ class VaultCon(ConnBase):
     exception_dict = {}
     datakey = {}
 
-    def __init__(self):
+    def __init__(self, params = None):
         """Constructor inisiating all properties
         """
         ConnBase.__init__(self)
         # construct the consul and vault params
-        vault_params = self.get_configs_dict(self._content['vault'], self.exception_key)
+        vault_params = self.get_configs_dict(self._content['vault'], self.exception_key) if not params else params
 
         # construct the vault url
         vault_params['url'] = self.exception_dict['scheme'] +'://' + self.exception_dict['host'] + ':' + str(self.exception_dict['port'])
