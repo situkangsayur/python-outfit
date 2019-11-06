@@ -27,7 +27,7 @@ class VaultCon(ConnBase):
         self.vault.kv.default_kv_version = '1'
 
         # get the secret information from vault then save in self.secret dict
-        self.secrets = self.vault.kv.read_secret(self.exception_dict['path'])['data']
+        self.secrets = self.vault.secrets.kv.read_secret(self.exception_dict['path'])['data']
    
 
     def _construct_data_vault(self, key = '', info = {}):
