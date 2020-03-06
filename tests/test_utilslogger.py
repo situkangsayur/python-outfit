@@ -8,6 +8,8 @@ from outfit import Logger
 from outfit import merge_dict
 from consul import Consul
 
+from .assets.logging_b import logging_b
+
 class TestLogger(unittest.TestCase):
 
     def setUp(self):
@@ -106,8 +108,7 @@ class TestLogger(unittest.TestCase):
         self.delete_all_log_files()
         
         from outfit.utils.io import load_yaml
-
-        mock_kv.return_value = [None, {'Value' : json.dumps(load_yaml('tests/assets/logging.yaml')).encode()}]
+        mock_kv.return_value = [None, {'Value' : logging_b}]
         Outfit.setup('./tests/assets/config-log-kv.yaml')
         
         Logger.info('test_info')
