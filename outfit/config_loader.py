@@ -11,7 +11,9 @@ class Outfit(object):
     def setup(path):
         Outfit.content = load_yaml(path)
         log_config = Outfit.content['logconfig'] if 'logconfig' in Outfit.content else None
+
         Logger.mode = 'root'
+
         if log_config != None:
             mode = log_config['mode'] if 'mode' in log_config else 'root'
             source_type = log_config['source_type'] if 'source_type' in log_config else None

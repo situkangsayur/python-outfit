@@ -4,6 +4,7 @@ from .hashicorp_base import ConnBase
 import consul
 import os
 import json
+from ..utils.io import convert_yaml
 from ..utils.logger import Logger
 
 class ConsulCon(ConnBase):
@@ -30,10 +31,18 @@ class ConsulCon(ConnBase):
         self.cons = consul.Consul(**consul_params)
 
    
-    def get_kv(self):
+    def get_kv(self, type = 'json'):
         """run config constructor return dict all configs
+        
+        Keyword arguments :
+            type -- The type of the value text format
         """
+
+        type_enum = {
+            'json' : lambda x: json.loads(x.decode('utf-8')) if x else '',
+            'yaml' : lambda x: convert_yaml(x) if x else ''
+        }
         temp = self.cons.kv.get(self.exception_dict['path'])[1]['Value']
-        result = json.loads(temp.decode('utf-8')) if temp else ''
+        result = type_enum[type](temp) 
         return result
 

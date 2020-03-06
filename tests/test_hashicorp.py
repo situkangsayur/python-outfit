@@ -71,7 +71,7 @@ class TestHashicorp(unittest.TestCase):
         con.get_kv = MagicMock(return_value = self.kv_sample)
         result = con.get_kv()
         self.assertEqual(result['db']['host'], 'localhost', 'the db host value is not equal')
-    #@patch.object(VaultCon, '_construct_data_vault')
+
     @patch.object(kv_v1.KvV1,'read_secret' )
     def test_vault_init(self,mock_kv):
         #mock_vault_con.return_value = {'data' : secret_kv}
