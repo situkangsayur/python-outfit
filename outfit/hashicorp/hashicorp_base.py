@@ -33,7 +33,7 @@ class ConnBase(ABC):
                 # checking if the string of value is in environment variables
                 temp = check_envvar(v[2:len(v)-1]) if ('${' == value[0:2]) and ('}' == value[len(value)-1]) else v
                 if temp == None:
-                    raise Exception('var value  not found')
+                    raise Exception('var value {0}  not found'.format(value))
 
                 # checking if the string of value is in exception keys
                 if k not in exception_key:
