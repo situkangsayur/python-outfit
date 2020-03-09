@@ -28,8 +28,9 @@ class Logger(object):
         from ..hashicorp.consul_config import ConsulCon
 
         consul_con = ConsulCon() if consul_con == None else consul_con
+        consul_con.exception_dict['path'] = source_location
 
-        config = consul_con.get_kv()
+        config = consul_con.get_kv('yaml')
 
         logging.config.dictConfig(config)
 
