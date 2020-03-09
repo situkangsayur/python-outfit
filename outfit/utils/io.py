@@ -21,3 +21,9 @@ def load_yaml(path):
             Logger.error('error load yaml file ' + str(err))
 
     return content
+
+def convert_yaml(stream):
+    try:
+        return yaml.safe_load(stream)
+    except yaml.YAMLError as err:
+        Logger.error('error load yaml stream text ' + str(err)) 
