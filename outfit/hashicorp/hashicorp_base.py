@@ -45,5 +45,4 @@ class ConnBase(ABC):
                     # assing the temp value (real value) to exception_dict for index v[1:]
                     self.exception_dict[k] =temp if type(temp) == int else temp
 
-
             return params

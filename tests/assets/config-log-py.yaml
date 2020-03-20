@@ -14,4 +14,7 @@ logconfig:
     mode: development
     source_type: dictionary 
     source_location: tests.assets.logging
+    default_type: yaml_file
+    default_location: ./tests/assets/logging.yaml
+
 
