@@ -101,11 +101,8 @@ class TestHashicorp(unittest.TestCase):
         result_vault = vault.get_secret_kv()
         result_consul = consul.get_kv()
 
-        Logger.debug(result_consul)
         result = merge_dict(result_vault, result_consul)
 
-        Logger.debug(result)
-        
         self.assertEqual(result['big_query']['client_id'], '1234567', ' client id from vault not match')
         self.assertEqual(result['appmode'], 'development', ' appmode from consul not match')
 

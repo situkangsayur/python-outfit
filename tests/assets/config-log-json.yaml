@@ -14,3 +14,6 @@ logconfig:
     mode: development
     source_type: json_file
     source_location: ./tests/assets/logging.json 
+    default_type: yaml_file
+    default_location: ./tests/assets/logging.yaml
+
