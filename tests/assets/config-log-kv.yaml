@@ -14,4 +14,7 @@ logconfig:
     mode: development
     source_type: consulkv  
     source_location: asset/logging
+    default_type: yaml_file
+    default_location: ./tests/assets/logging.yaml
+
 
