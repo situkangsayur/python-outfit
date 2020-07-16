@@ -17,8 +17,8 @@ def construct_dotkv_from_dict(source = {}, key = '', temp_result = {}):
     return temp_result   
 
 def merge_dict(dict1, dict2):
-    dotkv1 = construct_dotkv_from_dict(source = dict1)
-    dotkv2 = construct_dotkv_from_dict(source = dict2)
+    dotkv1 = construct_dotkv_from_dict(source = dict1, key = '', temp_result = {})
+    dotkv2 = construct_dotkv_from_dict(source = dict2, key = '', temp_result = {})
     set1 = set(dotkv1)
     set2 = set(dotkv2)
     
