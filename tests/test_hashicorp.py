@@ -71,7 +71,7 @@ class TestHashicorp(unittest.TestCase):
         con.get_kv = MagicMock(return_value = self.kv_sample)
         result = con.get_kv()
         self.assertEqual(result['db']['host'], 'localhost', 'the db host value is not equal')
-    #@patch.object(VaultCon, '_construct_data_vault')
+
     @patch.object(kv_v1.KvV1,'read_secret' )
     def test_vault_init(self,mock_kv):
         #mock_vault_con.return_value = {'data' : secret_kv}
@@ -101,11 +101,8 @@ class TestHashicorp(unittest.TestCase):
         result_vault = vault.get_secret_kv()
         result_consul = consul.get_kv()
 
-        Logger.debug(result_consul)
         result = merge_dict(result_vault, result_consul)
 
-        Logger.debug(result)
-        
         self.assertEqual(result['big_query']['client_id'], '1234567', ' client id from vault not match')
         self.assertEqual(result['appmode'], 'development', ' appmode from consul not match')
 
