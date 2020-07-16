@@ -15,7 +15,7 @@ python-outfit
 
 Python Outfit is set of dependencies across a range of python standard package for software development. 
 
-Features for 0.0.1 version:
+Features for 0.0.2 version:
 
 1. Load config using yaml.
 2. Integrated to Consul.
