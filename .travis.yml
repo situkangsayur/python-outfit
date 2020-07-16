@@ -4,10 +4,7 @@ branches:
   - master
   - stable
 python:
-- '3.5'
 - '3.6'
-- 3.5-dev
-- 3.6-dev
 install:
 - pip3 install -r requirements.txt
 - pip3 install python-coveralls
