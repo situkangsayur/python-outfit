@@ -38,7 +38,6 @@ class Logger(object):
             Logger.consul_con.exception_dict['path'] = source_location
 
             config = Logger.consul_con.get_kv('yaml')
-            logging.debug(config)
             logging.config.dictConfig(config)
 
             loggers = [name for name in logging.root.manager.loggerDict]
@@ -108,10 +107,6 @@ class Logger(object):
      
     @staticmethod
     def source_option(source_type = None, source_location = None, default_type = None, default_location = None):
-        print(source_type)
-        print(source_location)
-        print(default_type)
-        print(default_location)
 
         source_type = Logger.extract_varenv(source_type)
         source_location = Logger.extract_varenv(source_location)

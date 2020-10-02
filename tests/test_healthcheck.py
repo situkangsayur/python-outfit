@@ -41,9 +41,9 @@ class BasicHealthCheckTest(unittest.TestCase):
 
 
     def test_basic_check(self):
-        response = self.client.get(self.path)
+        response = self.client.get(self.path2)
         Logger.info(response)
-        self.assertEqual(500, response.status_code)
+        self.assertEqual(404, response.status_code)
 
     def test_failing_check(self):
         def fail_check():
