@@ -4,7 +4,7 @@ import os
 import json
 from consul import Consul
 from hvac.api.secrets_engines import kv_v1 
-from unittest import mock
+from unittest import mock 
 from unittest.mock import MagicMock, patch
 from outfit import ConsulCon
 from outfit import VaultCon
@@ -56,6 +56,13 @@ class TestHashicorp(unittest.TestCase):
         os.environ['scheme_consul']= 'http' 
         os.environ['token_consul']= 'qwerty123'
         os.environ['path_consul']= 'application'
+
+        os.environ['LOG_MODE']= 'development'
+        os.environ['LOG_LOCATION']= './tests/assets/logging.yaml'
+        os.environ['LOG_TYPE']= 'yaml_file' 
+        os.environ['DEFAULT_TYPE']= 'yaml_file'
+        os.environ['DEFAULT_LOCATION']= './tests/assets/logging.yaml' 
+
 
     def test_consul_init(self):
         con = ConsulCon()
