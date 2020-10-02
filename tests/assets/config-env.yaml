@@ -11,9 +11,9 @@ consul:
     token: ${token_consul}
     path: ${path_consul}
 logconfig:
-    mode: development
-    source_type: yaml_file
-    source_location: ./tests/assets/logging.yaml
-    default_type: yaml_file
-    default_location: ./tests/assets/logging.yaml
+    mode: ${LOG_MODE}
+    source_type: ${LOG_TYPE} 
+    source_location: ${LOG_LOCATION} 
+    default_type: ${DEFAULT_TYPE}
+    default_location: ${DEFAULT_LOCATION}
 
