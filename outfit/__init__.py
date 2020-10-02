@@ -9,5 +9,5 @@ from .hashicorp.consul_config import ConsulCon
 from .hashicorp.vault_config import VaultCon
 
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 
