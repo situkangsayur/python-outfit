@@ -2,20 +2,34 @@ import unittest
 import os
 import glob
 import json
+import yaml
 from unittest.mock import patch, mock_open, builtins
 from outfit import Outfit 
 from outfit import Logger
 from outfit import merge_dict
 from consul import Consul
+from outfit.hashicorp.consul_config import ConsulCon
 from outfit.utils.io import convert_yaml
 from .assets.logging_b import logging_b
+from .assets.logging import logging
 
 class TestLogger(unittest.TestCase):
 
     def setUp(self):
         if not os.path.exists('tests/test_logs'):
             os.mkdir('tests/test_logs')
-    
+
+        curr_dir = os.path.dirname(__file__)
+        file_path = 'assets/logging.yaml'
+        # get the yaml file
+        with open(os.path.join(curr_dir,file_path), 'r') as stream:
+            try:
+                self.normal_content = yaml.safe_load(stream)
+            except yaml.YAMLError as err:
+                Logger.error('error load yaml file ' + str(err))
+
+
+            
     def test_setup_log_json(self):
         self.delete_all_log_files()
         Outfit.setup('./tests/assets/config-log-json.yaml')
@@ -97,14 +111,15 @@ class TestLogger(unittest.TestCase):
             temp_critical = fcritical.readlines()
             last_line = temp_critical[len(temp_critical) - 1]
             self.assertTrue('test_critical' in last_line)
-
-    @patch.object(Consul.KV, 'get')
+    
+    @patch.object(ConsulCon, 'get_kv')
     def test_setup_log_consulkv(self, mock_kv):
         self.delete_all_log_files()
         
         from outfit.utils.io import load_yaml
-        mock_kv.return_value = [None, {'Value' : logging_b}]
-        result = convert_yaml(logging_b)
+        mock_kv.return_value =  logging
+
+        #result = convert_yaml(self.normal_content)
 
         Outfit.setup('./tests/assets/config-log-kv.yaml')
        
@@ -113,6 +128,7 @@ class TestLogger(unittest.TestCase):
         merror = mock_open(read_data = 'ERROR:test_utilslogger.py(62)> test_error')
         mcritical = mock_open(read_data = 'ERROR:test_utilslogger.py(62)> test_critical')
         m.side_effect = [minfo.return_value, mdebug.return_value, merror.return_value, mcritical.return_value]
+
         with patch('builtins.open', m):
             
             Logger.info('test_info')
@@ -139,10 +155,12 @@ class TestLogger(unittest.TestCase):
                 last_line = temp_critical[len(temp_critical) - 1]
                 self.assertTrue('test_critical' in last_line)
 
-    def test_setup_log_consulkv_failed(self):
+    @patch.object(ConsulCon, 'get_kv')
+    def test_setup_log_consulkv_failed(self, mock_kv):
         self.delete_all_log_files()
         
         from outfit.utils.io import load_yaml
+        mock_kv.return_value =  logging
 
         Outfit.setup('./tests/assets/config-log-kv.yaml')
         
