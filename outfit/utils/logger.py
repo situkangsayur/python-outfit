@@ -14,6 +14,8 @@ class Logger(object):
     debug = logging.getLogger(mode).debug
     error = logging.getLogger(mode).error
     critical = logging.getLogger(mode).critical
+    exception = logging.getLogger(mode).exception
+
 
     @staticmethod
     def load_config_from_yaml_file(source_location = None, default_type = None, default_location = None):
