@@ -1,6 +1,6 @@
 import os
 import yaml
-from logger import Logger
+from .logger import Logger
 
 def load_yaml(path):
     current_path = os.getcwd()
