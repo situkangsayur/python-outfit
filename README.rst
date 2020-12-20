@@ -7,6 +7,7 @@ python-outfit
 :Author: Hendri Karisma (http://github.com/situkangsayur)
 :Maintainer: Hendri Karisma (http://github.com/situkangsayur)
 
+
 .. image:: https://travis-ci.org/situkangsayur/python-outfit.svg?branch=master
   :target: https://travis-ci.org/situkangsayur/python-outfit
 
