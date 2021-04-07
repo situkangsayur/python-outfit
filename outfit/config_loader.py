@@ -1,5 +1,5 @@
 import logging
-from .utils.logger import Logger
+from .utils.logger import Logger, LoggerSetup
 from .utils.io import load_yaml
 
 class Outfit(object):
@@ -21,5 +21,5 @@ class Outfit(object):
             default_type = log_config['default_type'] if 'default_type' in log_config else None
             default_location = log_config['default_location'] if 'default_location' in log_config else None
 
-            Logger.setup_log(mode = mode, source_type = source_type, source_location = source_location,default_type = default_type, default_location = default_location)
+            LoggerSetup.setup_log(mode = mode, source_type = source_type, source_location = source_location,default_type = default_type, default_location = default_location)
         
