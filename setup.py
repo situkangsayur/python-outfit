@@ -49,7 +49,7 @@ setup(
                    "python-consul==1.1.0", 
                    "flask==1.1.1",
                    "py-healthcheck==1.9.0",
-                   "pyyaml==5.1.1"],
+                   "pyyaml==5.4"],
     extras_require={
         "dev": [
             "coverage",
