@@ -26,7 +26,6 @@ class ConsulCon(ConnBase):
         
         # construct the consul and vault params
         consul_params = self.get_configs_dict(self._content['consul'], self.exception_key) if not params else params
-        print(consul_params)
 
         # construct the consul
         self.cons = consul.Consul(**consul_params)
