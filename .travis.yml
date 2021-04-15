@@ -1,0 +1,23 @@
+language: python
+branches:
+  only:
+  - master
+  - stable
+python:
+- '3.8'
+install:
+- pip3 install -r requirements.txt
+- pip3 install python-coveralls
+- pip3 install coverage
+- pip3 install twine
+script:
+- coverage run --source outfit setup.py test
+- python3 setup.py sdist bdist_wheel
+after_success:
+- coveralls
+deploy:
+  skip_cleanup: true
+  provider: pypi
+  user: situkangsayur
+  password: pypi-AgEIcHlwaS5vcmcCJGFkYTEwMmU2LTBmMTAtNDFmNS05NWRiLWIwOTViZGQ0OTFmZQACPnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJweXRob24tb3V0Zml0Il19LCAidmVyc2lvbiI6IDF9AAAGIN_CPm5zO6_LqQXxvwPJ0wSYTnhD9Ydrw9LjLoQov_iF
+  distributions: sdist bdist_wheel
