@@ -195,3 +195,6 @@ And for logging yaml file or the structures :
     ...
 
 you can get more detail about log config in yaml from `this link <https://docs.python.org/3/howto/logging.html>`_
+
+
+test2
